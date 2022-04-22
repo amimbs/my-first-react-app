@@ -13,9 +13,16 @@ function App() {
 
   };
 
-  let handleClick = () => {
-    setCount(count + 1);
-    console.log("button clickec", count)
+  let handleClick = (e) => {
+    console.log(e.target)
+    console.log(e.target.dataset)
+    console.log(parseInt(e.target.dataset.calc))
+    if (e.target.dataset.calc === "reset") {
+      setCount(0)
+    } else {
+      setCount(count + parseInt(e.target.dataset.calc))
+    }
+    console.log("button clicked", count)
   }
 
   return (
@@ -23,16 +30,20 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <form onSubmit={onSubmit}>
-          <TextInput name="first_name" title="First Name" placeholder="First Name"/>
-          <TextInput name="last_name" title="Last Name" placeholder="Last Name"/>
-          <TextInput name="email" title="Email" placeholder="Email"/>
-          <TextInput type="password" name="password" title="Password" placeholder="Password"/>
+          <TextInput name="first_name" title="First Name" placeholder="First Name" />
+          <TextInput name="last_name" title="Last Name" placeholder="Last Name" />
+          <TextInput name="email" title="Email" placeholder="Email" />
+          <TextInput type="password" name="password" title="Password" placeholder="Password" />
           <input type="submit" value="Submit"></input>
         </form>
 
         <div>
           <p>You have clicked {count} times</p>
-          <button onClick={handleClick}>Click me</button>
+          <button data-calc="-5" onClick={handleClick}>-5</button>
+          <button data-calc="-1" onClick={handleClick}>-1</button>
+          <button data-calc="reset" onClick={handleClick}>Reset</button>
+          <button data-calc="+1" onClick={handleClick}>+1</button>
+          <button data-calc="+5" onClick={handleClick}>+5</button>
         </div>
 
 
@@ -42,9 +53,4 @@ function App() {
     </div>
   );
 }
-
-//increment 1 or decrement
-//same for 5
-//resets to zero
- // npm start
 export default App;
