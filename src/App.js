@@ -2,6 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import TextInput from './TextInput';
 import { useState } from 'react';
+import Home from './Home';
+import About from './About';
+import Users from './Users';
+import {
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -36,6 +44,20 @@ function App() {
           <TextInput type="password" name="password" title="Password" placeholder="Password" />
           <input type="submit" value="Submit"></input>
         </form>
+
+        <div className="menu">
+          <Link to="/">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/users">Users</Link>
+        </div>
+
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/users" element={<Users />} />
+          </Routes>
+        </div>
 
         <div>
           <p>You have clicked {count} times</p>
